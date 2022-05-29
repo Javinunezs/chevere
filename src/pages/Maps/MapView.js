@@ -1,19 +1,17 @@
 import React from "react";
-import {Map, Marker, Popup, MapContainer, TileLayer, useMap} from "react-leaflet";
+import { Marker, Popup, MapContainer, TileLayer} from "react-leaflet";
 import markerIconPng from "leaflet/dist/images/marker-icon.png";
 import {Icon} from 'leaflet';
 import "leaflet/dist/leaflet.css";
 
 
 
-    function MapView(){
+function MapView(){
 
+  const position = [51.505, -0.09];
 
-
-        const position = [51.505, -0.09];
-
-
-        return(
+  //Sacado de la documentacion de leaflet
+  return(
         
         <div className="pt-20"> 
         <MapContainer id="map" center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false}>
@@ -28,16 +26,7 @@ import "leaflet/dist/leaflet.css";
             </Marker>
           </MapContainer>
           </div> 
-          )
-    };
-
-
-   
-
-
-
-
-
-
+  )
+};
 
 export default MapView;
