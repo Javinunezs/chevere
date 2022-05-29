@@ -6,6 +6,7 @@ import {toast} from "react-toastify";
 
 export default function DeletePost({id, imageUrl}){
 
+    // Manejador para borrar eventos ya creados,se borran de la BD
     const handleDelete = async() => {
             if(window.confirm("Quieres borrarlo?")){
 
@@ -17,14 +18,14 @@ export default function DeletePost({id, imageUrl}){
 
 
         } catch (error) {
-            toast("Error borrando evento", {type: "error"})
+            toast("Error borrando evento", {type: "error"}) // Hacer esto con todos lo errores
             console.log(error)
         }
         
     }
     };
 
-
+    // Cruz para borrar un evento
     return(
         <div>
             <i className="fa fa-times" onClick={handleDelete} style={{cursor:"pointer"}} ></i>

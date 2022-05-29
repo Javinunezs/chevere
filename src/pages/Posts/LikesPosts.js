@@ -4,10 +4,12 @@ import { auth, db } from "../../firebase-config";
 import { arrayRemove, arrayUnion, doc, updateDoc } from "firebase/firestore";
 
 export default function LikesPosts({ id, likes }) {
-  const [user] = useAuthState(auth);
 
+  const [user] = useAuthState(auth);
   const likesRef = doc(db, "Posts", id);
 
+  // Manejador que controla los eventos que le gusta a un usuario
+  // Actualizarlo para que el usuario pueda ver que eventos ha seleccionado como favoritos
   const handleLike = () => {
     if (likes?.includes(user.uid)) {
       updateDoc(likesRef, {
@@ -28,6 +30,9 @@ export default function LikesPosts({ id, likes }) {
         });
     }
   };
+
+
+  // Recuento de likes y simbolo
   return (
     <div>
       <i

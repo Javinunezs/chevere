@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import {Link, Navigate} from "react-router-dom";
-import{useAuth} from "../../context/authContext"; 
+import React from 'react';
+import { Link } from "react-router-dom";
+import { useAuth } from "../../context/authContext"; 
 
 
 function Navbar() {
@@ -21,7 +21,7 @@ function Navbar() {
 
 
 // Barra de navigación done el objetivo es reducir al maximo los enlaces desde la barra de navegacion, dejando un diseño limopo
-// La barra de navegación cambia ahora mismo entre usuarios registrados y los que no están. Limitando asi ciertas acciones.
+// La barra de navegación cambia ahora mismo entre usuarios registrados y los que no están. Limitando asi ciertas acciones dependiendo de si estas o no registrado.
   return (
     
 		<nav className="bg-white shadow-lg items-center justify-between z-[100] w-full absolute">

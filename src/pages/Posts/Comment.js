@@ -6,17 +6,23 @@ import {v4 as uuidv4} from 'uuid';
 
 
 function Comment({id}) {
+
   const [comment, setComment] = useState("");
   const [comments,setComments] = useState([]);
   const [currentlyLoggedinUser] = useAuthState(auth);
   const commentRef=doc(db,"Posts", id);
+
+
+  // useEffect usado para fijar los comentarios
   useEffect(() => {
     const docRef = doc(db, "Posts",id);
     onSnapshot(docRef,(snapShot) => {
       setComments(snapShot.data().comments);
     });
-  },[]);
+  },
+  []);
 
+  // Manejador que controla la entrada de datos y la actualizacion de los valores de la base de datos
   const handleChangeComment = (e) => {
     if(e.key === "Enter"){
       updateDoc(commentRef,{
@@ -36,7 +42,7 @@ function Comment({id}) {
     }
   }
 
-
+  // Manejador para ayudarnos a eliminar el comentario, y actualiza la BD
   const handleDeleteComment=(comment)=>{
     console.log(comment);
     updateDoc(commentRef,{
@@ -51,7 +57,7 @@ function Comment({id}) {
   };
 
 
-
+  // Cambiar el estilo visual de esta pagina por completo
   return (
     <div>Comment
       <div className='container'>

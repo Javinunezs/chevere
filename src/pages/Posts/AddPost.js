@@ -16,9 +16,9 @@ export function AddPost() {
     // Declaracion de constantes usadas  mas adelante
     let navigate = useNavigate();
     const { loading} = useAuth()  //ejemplo uso: <h1> Hola {user.email}</h1>
-    const selectDate =TableDatePicker();
+    const selectDate =TableDatePicker(); // variable que quiero usar para guardar las fechas que el usuario elija para realizar el evento
     const [user] = useAuthState(auth);
-    const [date, setDate]=useState(new Date());
+    const [date, setDate]=useState(new Date()); // variable que quiero usar para guardar las fechas que el usuario elija para realizar el evento
     const [progress,setProgress] = useState(0);
 
 
@@ -29,7 +29,7 @@ export function AddPost() {
         description: "",
         image: "",
         createdAt: Timestamp.now().toDate(),
-        selectedDate: "",
+        selectedDate: "", // variable que quiero usar para guardar las fechas que el usuario elija para realizar el evento
 
     });
 
@@ -57,9 +57,14 @@ export function AddPost() {
             alert('Rellena todos los campos');
             return;
         }
+
+
+        // Variables que nos ayudan a guardar el contenido de imagenes en el evento
         const storageRef = ref(storage, `/images/${Date.now()}${formData.image.name}`);
         const uploadImage = uploadBytesResumable(storageRef, formData.image);
 
+
+        // Mi intención con estas lineas de código es crear una barra que marque el estado de lo que falta para que se guarde el evento
         uploadImage.on("state_changed",(snapshot)=>{
             const progressPercent = Math.round( (snapshot.bytesTransferred /snapshot.totalBytes) * 100);
             setProgress(progressPercent);
@@ -88,7 +93,7 @@ export function AddPost() {
                     comments:[]
                 })
                 .then(() => {
-                    toast("Evento añadido", {type: "success"});
+                    toast("Evento añadido", {type: "success"}); // Terminar de hacer esto con todas las alertas que he dispuesto en el resto de documentos
                     setProgress(0);
                     navigate("/");
                 })
@@ -127,50 +132,53 @@ export function AddPost() {
         
         <div className='w-full h-screen'>
             
-        <div className='bg-black/60 fixed top-0 left-0 w-full h-screen'></div>
+            <div className='bg-black/60 fixed top-0 left-0 w-full h-screen'></div>
         
-        <div className='fixed w-full px-4 py-24 z-50'>
+            <div className='fixed w-full px-4 py-24 z-50'>
             
-        <div className='max-w-[450px] h-[600px] mx-auto  bg-black/75 text-white'>
+                <div className='max-w-[450px] h-[600px] mx-auto  bg-black/75 text-white'>
         
-        <i className=" fa fa-times mx-6 my-6 right-full " onClick={handleClose} style={{cursor:"pointer"}} ></i>
+                <i className=" fa fa-times mx-6 my-6 right-full " onClick={handleClose} style={{cursor:"pointer"}} ></i>
         
-        <div className='max-w-[320px] mx-auto py-4'>
+                    <div className='max-w-[320px] mx-auto py-4'>
         
                         <h2 className="text-3xl font-bold">Crear Evento</h2>
                         
                         <div className=" w-full flex flex-col py-4">
-                        <input type="text" name="title" placeholder='Titulo'
-                   className="form-input p-3 my-2 bg-gray-700 rounded" value={formData.title} onChange={(e) => handleChange(e)}/>
+                            <input type="text" name="title" placeholder='Titulo'
+                            className="form-input p-3 my-2 bg-gray-700 rounded" value={formData.title} onChange={(e) => handleChange(e)}/>
 
-                        {/* description */}
+                            {/* description */}
 
-                        <textarea name="description" placeholder='Descripcion del evento...' className="form-textarea p-3 my-2 bg-gray-700 rounded" value={formData.description} onChange={(e) => handleChange(e)}/>
+                            <textarea name="description" placeholder='Descripcion del evento...' className="form-textarea p-3 my-2 bg-gray-700 rounded" value={formData.description} onChange={(e) => handleChange(e)}/>
 
-                        {/* image */}
-                        <label className="p-3  text-white-700 ">Foto del Evento</label>
-                        <input type="file" name="image" placeholder='Foto' accept="image/*" className="form-input p-3 my-2 bg-gray-700 rounded" onChange={(e) => handleImageChange(e)}/>
+                            {/* image */}
+                            <label className="p-3  text-white-700 ">Foto del Evento</label>
+                            <input type="file" name="image" placeholder='Foto' accept="image/*" className="form-input p-3 my-2 bg-gray-700 rounded" onChange={(e) => handleImageChange(e)}/>
 
-                        {progress === 0 ? null :(
-                            <div className="progress">
-                                <div className="progress-bar progress-bar-striped mt-2" style={{width: `$(progress)%`}}>
-                                    {`subiendo imagen ${progress}%`}
+                            {progress === 0 ? null :(
+                                <div className="progress">
+                                    <div className="progress-bar progress-bar-striped mt-2" style={{width: `$(progress)%`}}>
+                                        {`subiendo imagen ${progress}%`}
+                                    </div>
                                 </div>
-                            </div>
 
-                        )}
+                            )}
 
-                        <TableDatePicker/>
+                            <TableDatePicker/>
+                            
                         
-                    
-                        <button  onClick={handlePublish} className="  py-3 my-6 rounded font-bold mt-4 bg-slate-50 hover:bg-green-600 text-black shadow rounded border-green  py-2 px-4 w-full">Publicar</button>
-                    
+                            <button  onClick={handlePublish} className="  py-3 my-6 rounded font-bold mt-4 bg-slate-50 hover:bg-green-600 text-black shadow rounded border-green  py-2 px-4 w-full">Publicar</button>
+                        
                         </div>
 
-            </div>
-            </div>
+                    </div>
+                </div>
             
             </div>
+
+
+            {/* Asi consigo que se muestre de fondo el feed principal*/}
 
             <Posts  className='hidden sm:block absolute w-full h-full object-cover'> </Posts>
           
