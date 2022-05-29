@@ -1,25 +1,20 @@
 import React from "react";
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import Home from "./pages/Home";
-import Login from "./pages/AuthChevere/Login";
+import { BrowserRouter as  Routes, Route, Link } from "react-router-dom";
+import { Login } from "./pages/AuthChevere/Login";
 import { Register }  from "./pages/AuthChevere/Register";
 import {AuthProvider} from "./context/authContext";
 import { ProtectedRoute } from "./pages/AuthChevere/ProtectedRoute";
-
-
 import { useState } from "react";
 import { ResetPassword } from "./pages/AuthChevere/ResetPassword";
 import { Posts } from "./pages/Posts/Posts";
 import { AddPost } from "./pages/Posts/AddPost";
-import Navbar from "./pages/NavigationBar/Navbar";
-import 'font-awesome/css/font-awesome.css';
-import Post from "./pages/Posts/Post";
-import Profile from "./pages/ProfileChevere/Profile";
+import Navbar  from "./pages/NavigationBar/Navbar";
+import Post  from "./pages/Posts/Post";
+import Profile  from "./pages/ProfileChevere/Profile";
 import MapView from "./pages/Maps/MapView";
-import "leaflet/dist/leaflet.css"
-//import { signOut } from "firebase/auth";
-//import { auth } from "./firebase-config";
+import "leaflet/dist/leaflet.css";
+import 'font-awesome/css/font-awesome.css';
 
 
 

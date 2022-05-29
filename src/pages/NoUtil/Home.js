@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import {collection, getDocs, deleteDoc, doc} from "firebase/firestore";
-import  {auth, db} from "../firebase-config";
+import  {auth, db} from "../../firebase-config";
 
 //import { useContext } from "react";
 //import {context} from "../context/authContext";
-import{useAuth} from "../context/authContext";  //Esto sirve para traer la info del user logeado
+import{useAuth} from "../../context/authContext";  //Esto sirve para traer la info del user logeado
 import { Link } from "react-router-dom";
 
 function Home( {isAuth} ) {
