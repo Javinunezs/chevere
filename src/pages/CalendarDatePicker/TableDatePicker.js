@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
+
+// Función creada con el objetivo de poder seleccionar las fechas para cada evento
 export default function TableDatePicker() {
   
     const [startDate, setStartDate] = useState(null);

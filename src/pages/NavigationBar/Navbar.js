@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
 import {Link, Navigate} from "react-router-dom";
 import{useAuth} from "../../context/authContext"; 
-import {useAuthState} from "react-firebase-hooks/auth";
-import { auth } from '../../firebase-config';
+
 
 function Navbar() {
 
   const {  user,logout, loading} = useAuth();  //ejemplo uso: <h1> Hola {user.email}</h1>
-  const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
 
-  //const {user} = useAuthState(auth);
-  
 
+  // Manejador para realizar logout mediante un botón en la barra de navegacion
   const handleLogout =async () => {
     try{
       await logout();
@@ -22,6 +19,9 @@ function Navbar() {
   
   if (loading) return <h1> Loading </h1>
 
+
+// Barra de navigación done el objetivo es reducir al maximo los enlaces desde la barra de navegacion, dejando un diseño limopo
+// La barra de navegación cambia ahora mismo entre usuarios registrados y los que no están. Limitando asi ciertas acciones.
   return (
     
 		<nav className="bg-white shadow-lg items-center justify-between z-[100] w-full absolute">
@@ -97,6 +97,3 @@ function Navbar() {
 }
 
 export default Navbar
-
-
-//{"<Link to="addpost" className="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Add Event</Link>"}
