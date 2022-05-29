@@ -2,7 +2,7 @@ import React, { useState } from "react";
 //import { auth, provider } from "../firebase-config";
 //import { signInWithPopup } from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../context/authContext";
+import { useAuth } from "../../context/authContext";
 import { Alert } from "./Alert";
 
 

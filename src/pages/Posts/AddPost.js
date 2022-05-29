@@ -1,23 +1,28 @@
 import React, {useState} from "react";
 import { addDoc, collection, Timestamp } from "firebase/firestore";
 import {getDownloadURL, ref, uploadBytesResumable} from "firebase/storage";
-import { storage, db, auth } from "../firebase-config";
+import { storage, db, auth } from "../../firebase-config";
 import {toast} from "react-toastify";
-import{useAuth} from "../context/authContext"; 
-import { Alert } from "./Alert";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import {useAuth} from "../../context/authContext"; 
+import { useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import {Posts} from "./Posts";
-import TableDatePicker from "./CalendarDatePicker/TableDatePicker";
+import TableDatePicker from "../CalendarDatePicker/TableDatePicker";
 
 
 
 export function AddPost() {
-    let navigate = useNavigate();
 
+    // Declaracion de constantes usadas  mas adelante
+    let navigate = useNavigate();
+    const { loading} = useAuth()  //ejemplo uso: <h1> Hola {user.email}</h1>
     const selectDate =TableDatePicker();
     const [user] = useAuthState(auth);
     const [date, setDate]=useState(new Date());
+    const [progress,setProgress] = useState(0);
+
+
+
     // Declaracion de objeto formulario
     const[formData, setFormData] = useState({
         title: "",
@@ -28,7 +33,7 @@ export function AddPost() {
 
     });
 
-    const [progress,setProgress] = useState(0);
+    
 
     // Manejador de cambios
     const handleChange=(e) =>{
@@ -40,6 +45,8 @@ export function AddPost() {
         setFormData({...formData, image: e.target.files[0]});
     };
 
+
+    // Manejador para la asignacion de fecha a un evento
     const handleDate=() =>{
 
     };
@@ -76,7 +83,6 @@ export function AddPost() {
                     imageUrl: url,
                     createdAt: Timestamp.now().toDate(),
                     createdBy: user.displayName || user.email,
-                    selectedDate: Timestamp.fromMillis(selectDate),
                     userId:user.uid,
                     likes:[],
                     comments:[]
@@ -96,21 +102,13 @@ export function AddPost() {
 
     };
 
-    // Mirar si borro estas constantes
-    const { logout, loading} = useAuth()  //ejemplo uso: <h1> Hola {user.email}</h1>
 
 
-    /*// Manejador para salir de la cuenta de usuario actual
-    const handleLogout =async () => {
-        try{
-          await logout();
-        } catch (error) {
-          console.error(error.message);
-        }
-      };*/
-      
+      //Estado de carga de la pagina
       if (loading) return <h1> Loading </h1>
 
+
+      // Manejador que controla el final de la acción de subir un evento
       const handleClose =async () => {
         try{
             navigate('/');
@@ -120,19 +118,10 @@ export function AddPost() {
       };
 
 
-      /* <div className='w-full h-screen'>
-            
-        
-            
-            <div className='bg-black/60 fixed top-0 left-0 w-full h-screen'></div>
-            <div className='fixed w-full px-4 py-24 z-50'>
-
-            <div className='fixed w-full px-4 py-24 z-50'>
-             <div className='max-w-[450px] h-[600px] mx-auto bg-black/75 text-white'> */
-
 
         
     // Formulario para rellenar datos de evento
+    // Aun falta por Poder seleccionar lugar y fecha junto al deporte que se va a practicar
 
     return(
         
@@ -196,43 +185,3 @@ export function AddPost() {
 
 export default AddPost
 
-
-/* <div className=" bg-gray-200">
-
-       
-
-
-              
-            <div className="py-8"> </div>
-        
-            <div className="px-10 grid grid-cols-1 rounded-lg fixed border-10 mx-5 mt-3 p-3 bg-green-200 text-black" >
-
-                        <h2 className="text-lg font-bold">Crear Evento</h2>
-                        <label className="" htmlFor="">Titulo</label>
-                        <input type="text" name="title" className="form-input" value={formData.title} onChange={(e) => handleChange(e)}/>
-
-                       
-
-                        <label htmlFor="">Descripcion</label>
-                        <textarea name="description" className="form-textarea" value={formData.description} onChange={(e) => handleChange(e)}/>
-
-                       
-                        <label htmlFor="">Foto</label>
-                        <input type="file" name="image" accept="image/*" className="form-input" onChange={(e) => handleImageChange(e)}/>
-
-                        {progress === 0 ? null :(
-                            <div className="progress">
-                                <div className="progress-bar progress-bar-striped mt-2" style={{width: `$(progress)%`}}>
-                                    {`subiendo imagen ${progress}%`}
-                                </div>
-                            </div>
-
-                        )}
-
-                    
-                        <button  onClick={handlePublish} className=" mt-4 bg-slate-50 hover:bg-slate-200 text-black shadow rounded border-2 border-gray-300 py-2 px-4 w-full">Publicar</button>
-                    
-
-
-            </div>
-        </div> */

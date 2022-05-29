@@ -2,7 +2,7 @@ import { doc, onSnapshot } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useParams } from 'react-router-dom'
-import { auth, db } from '../firebase-config';
+import { auth, db } from '../../firebase-config';
 import LikesPosts from './LikesPosts';
 import Comment from './Comment';
 

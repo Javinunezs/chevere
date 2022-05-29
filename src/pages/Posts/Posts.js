@@ -1,13 +1,13 @@
 import React, {useState, useEffect} from "react";
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import DeletePost from "./DeletePost";
-import { auth, db } from "../firebase-config";
+import { auth, db } from "../../firebase-config";
 import { Link, useNavigate } from "react-router-dom";
-import{useAuth} from "../context/authContext"; 
+import{useAuth} from "../../context/authContext"; 
 import LikesPosts from "./LikesPosts";
 import { useAuthState } from "react-firebase-hooks/auth";
 
-import {MapView} from "./MapView";
+import {MapView} from "../Maps/MapView";
 import { useMap} from "react-leaflet";
 
 

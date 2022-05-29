@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import {Link, Navigate} from "react-router-dom";
-import{useAuth} from "../context/authContext"; 
+import{useAuth} from "../../context/authContext"; 
 import {useAuthState} from "react-firebase-hooks/auth";
-import { auth } from '../firebase-config';
+import { auth } from '../../firebase-config';
 
 function Navbar() {
 

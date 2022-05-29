@@ -1,8 +1,8 @@
 import { updateProfile } from 'firebase/auth';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import React, { useEffect, useState } from 'react'
-import { useAuth } from '../context/authContext';
-import { storage } from '../firebase-config';
+import { useAuth } from "../../context/authContext";
+import { storage } from '../../firebase-config';
 
 
   //Storage
