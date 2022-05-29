@@ -45,7 +45,7 @@ export function AuthProvider ({children}){
     }, []);
 
 
-    // Devolvemos los valores que deben ser comprobado
+    // Devolvemos los valores que deben ser comprobados
     return(
         <authContext.Provider value={{signup, login, user, logout, loading, loginWithGoogle, resetPassword }}>
             {children}

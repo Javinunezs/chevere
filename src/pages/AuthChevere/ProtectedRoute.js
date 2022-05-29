@@ -7,9 +7,12 @@ export function ProtectedRoute({children}){
 
     const {user,loading} = useAuth();
 
+
+
+    // De no existir lo redireccionamos al login
     if(loading) return <h1> loading </h1>;
     if(!user) return <Navigate to='/login' />;
-    // if(!user) return <Navigate to='/login' />;
+
 
     return <>{children}</>;
 

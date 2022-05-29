@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-//import { auth, provider } from "../firebase-config";
-//import { signInWithPopup } from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 import { Alert } from "./Alert";
@@ -8,6 +6,7 @@ import { Alert } from "./Alert";
 
 export function Login() {
 
+  // Asignamos los campos que user dispondrá
 
     const [user, setUser] = useState({
         email: "",
@@ -40,6 +39,7 @@ export function Login() {
         }
     };
 
+    // Manejador usado para poder ingresar desde google
     const handleGoogleSignin = async () => {
         try{
             await loginWithGoogle();
@@ -50,17 +50,8 @@ export function Login() {
 
     };
 
-    const handleResetPassword = async (e) => {
-        e.preventDefault();
-        if (!user.email) return setError("Introduce tu email");
-        try {
-            await resetPassword(user.email);
-            setError('Hemos enviado un nuevo enlace para resetear');
-        } catch (error) {
-            setError(error.message);
-        }
-    };
  
+    // Vista de la página de Login, adaptarla para que se vea en el home y no como una pantalla separada
 
     return (
 
@@ -128,95 +119,6 @@ export function Login() {
 
     );
 }
-
-
-
-
-
-/*        <div className="w-full max-w-xs m-auto ">
-            
-            <h1 className="text-7xl text-lime-900 pb-20 ">Chask </h1>
-
-            {error && <Alert message={error} />}
-
-            <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-                <div className="mb-4">
-                    <label htmlFor="email" className="block text-gray-700 text-sm font-bold mb-2"> Email </label>
-                    <input 
-                        type="email" 
-                        name="email" 
-                        placeholder="youremail@email"
-                        onChange={handleChange}
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-
-                    />
-                </div>
-                <div className="mb-4">
-                    <label htmlFor="password" className="block text-gray-700 text-sm font-bold mb-2"> Password </label>
-                    <input 
-                        type="password" 
-                        name="password" 
-                        id="password" 
-                        onChange={handleChange}
-                        placeholder="******"
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    />
-                </div>
-
-                <div className="flex items-center justify-between">
-
-                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" >Login</button>
-
-                    <p className="my-4 text-sm flex justify-between px-3"> Forgot password? <Link to='/resetpassword' className="text-blue-700 hover:text-blue-900">Reset Password</Link></p>                
-
-                </div>
-            </form>
-            <button onClick={handleGoogleSignin} className="bg-slate-50 hover:bg-slate-200 text-black shadow rounded border-2 border-gray-300 py-2 px-4 w-full">Login with Google</button>
-
-            <p className="my-4 text-sm flex justify-between px-3"> No tienes cuenta? <Link to='/register' className="text-blue-700 hover:text-blue-900">Register</Link></p>
-        </div> */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // Primera funcion en funcionamiento
-  /*let navigate = useNavigate();
-
-  const signInWithGoogle = () => {
-    signInWithPopup(auth, provider).then((result) => {
-      localStorage.setItem("isAuth", true);  
-      setIsAuth(true);
-      navigate("/");
-    });
-  };
-  return (
-    <div className = "loginPage">
-
-        <p> Sign In With Google </p>
-        <button className="login-with-google-btn" onClick={signInWithGoogle}>
-          Sign in with google
-        </button>
-    </div>
-  );
-  }*/
-
 
 
 

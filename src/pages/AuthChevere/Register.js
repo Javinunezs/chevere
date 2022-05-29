@@ -37,7 +37,7 @@ export function Register() {
         }
     };
 
-
+    // Al igual que en el login, añadirlo a la pagina principal, que no aparezca en una pantalla separada, Cambiar mensajes de error por toast
     return (
         <>
         <div className='w-full h-screen'>
@@ -101,32 +101,3 @@ export function Register() {
 
 
 
-/*{error && <Alert message={error} />}
-            <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mt-4 mb-4">
-                <div className="mt-3 mb-4">
-                    <label htmlFor="email" className="block text-gray-700 text-sm font-bold my-2"> Email </label>
-                    <input 
-                        type="email" 
-                        name="email" 
-                        placeholder="youremail@company.ltd" 
-                        onChange={handleChange}
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    />
-                </div>
-                
-                <div className="mb-4">
-                    <label htmlFor="password" className="block text-gray-700 text-sm font-bold my-2"> Password </label>
-                    <input 
-                        type="password" 
-                        name="password" 
-                        id="password" 
-                        onChange={handleChange}
-                        placeholder="******"
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    />
-                </div>
-
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold text-sm py-2 px-4 rounded focus:outline-none focus:shadow-outline">Register</button>
-
-            </form>
-            <p className="my-4 text-sm flex justify-between px-3">Ya tienes cuenta? <Link to='/login'>Login</Link></p> */
