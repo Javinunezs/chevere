@@ -29,7 +29,7 @@ function Navbar() {
 // La barra de navegación cambia ahora mismo entre usuarios registrados y los que no están. Limitando asi ciertas acciones dependiendo de si estas o no registrado.
   return (
     
-		<nav className="bg-white shadow-lg items-center justify-between z-[40] w-full absolute">
+		<nav className="bg-white shadow-lg items-center justify-between z-[400] w-full absolute">
 		{
 			!user?
 			<>
@@ -59,7 +59,7 @@ function Navbar() {
 										<>
 											<a href="/" className="py-4 px-2 text-green-500 border-b-4 border-green-500 font-semibold ">Home</a>
 											<Link to={"mapview"} className="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Map</Link>
-											<Link to={"login"} className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300">Log In</Link>
+											<Link to="login" className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300">Log In</Link>
 											<Link to="register" className="py-2 px-2 font-medium text-white bg-green-500 rounded hover:bg-green-400 transition duration-300">Sign Up</Link>
 							
 										</>

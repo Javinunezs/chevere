@@ -1,15 +1,34 @@
-import { doc, onSnapshot } from 'firebase/firestore';
+import { arrayUnion, doc, onSnapshot, updateDoc } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useParams } from 'react-router-dom'
 import { auth, db } from '../../firebase-config';
 import LikesPosts from './LikesPosts';
+import SavePost from "./SavePost";
 import Comment from './Comment';
 
-function Post() {
+function Post(item) {
     const {id} = useParams();
     const [post, setPost] = useState(null);
+    const [saved, setSaved] = useState(false);
     const [user] = useAuthState(auth);
+
+    const eventID=doc(db,'users', `${user?.email}`)
+
+    const savPost = async()=>{
+        if(user?.email){
+            setSaved(true)
+            await updateDoc(eventID, {savedPosts: arrayUnion({
+                id: item.id,
+                title: item.title,
+                img: item.backdrop_path
+            })
+            })
+        }
+        else{
+            alert('Please log in');
+        }
+    }
 
     // Este hook nos permite que se guarde la referencia del documento y guardar el post, para asi poder ver un post
     useEffect(
@@ -43,6 +62,10 @@ function Post() {
                                 <div className='p-2'>
                                     <p>{post.likes.length}</p>
                                 </div>
+                                {user && <SavePost id={id} savePost={post.savePost}/>}
+                                        <div className="p-2" onClick={savPost}>
+                                            <p>{post.savePost?.length} Evento Guardado</p>
+                                        </div>
                             </div>
                             {/*comment*/}
                             <Comment id={post.id} />

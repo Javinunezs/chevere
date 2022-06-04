@@ -5,6 +5,7 @@ import { auth, db } from "../../firebase-config";
 import { Link, useNavigate } from "react-router-dom";
 import{useAuth} from "../../context/authContext"; 
 import LikesPosts from "./LikesPosts";
+import SavePost from "./SavePost";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 
@@ -62,7 +63,7 @@ export function Posts(){
                 ) : (  
                     
 
-                   posts.map(({id,title,description,imageUrl, createdAt,createdBy,userId,likes,comments,}) => (
+                   posts.map(({id,title,description,imageUrl, createdAt,createdBy,userId,likes,comments,savePost}) => (
 
                     <div className=" col-span-6   mx-5">
                        <div className="  border-y-zinc-50 rounded-md  px-4 py-4 z-50  mb-6 p-6 bg-gray-300 m-auto w-full text-black " key={id}>
@@ -106,6 +107,10 @@ export function Posts(){
                                         {user && <LikesPosts id={id} likes={likes} />}
                                         <div className="p-2">
                                             <p>{likes?.length} likes</p>
+                                        </div>
+                                        {user && <SavePost id={id} savePost={savePost} />}
+                                        <div className="p-2">
+                                            <p>{savePost?.length} Evento Guardado</p>
                                         </div>
                                         {comments && comments.length > 0 && (
                                         <div className="p-2">
