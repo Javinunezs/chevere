@@ -53,7 +53,7 @@ export function Posts(){
     return(
         <div className="grid grid-cols-3  bg-gray-200">
                          
-            <div className="col-span-2 pt-20">             
+            <div className="col-span-3 pt-20">             
 
             {/* Aqui para solucionar el problema de esconderse debajo de navbar usaba <div className="py-10"></div>, ahora uso arriba pt-20 y volver a poner en col-span-2 cuando añada lo que quiero a la derecha, mientras ocupar toda la pantalla*/}
 
