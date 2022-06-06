@@ -11,6 +11,7 @@ import { AddPost } from "./pages/Posts/AddPost";
 import Navbar  from "./pages/NavigationBar/Navbar";
 import Post  from "./pages/Posts/Post";
 import Profile  from "./pages/ProfileChevere/Profile";
+import EditProfile  from "./pages/ProfileChevere/EditProfile";
 import MapView from "./pages/Maps/MapView";
 import "leaflet/dist/leaflet.css";
 import 'font-awesome/css/font-awesome.css';
@@ -51,6 +52,12 @@ function App() {
             <Route path = "/profile" element={
               <ProtectedRoute>
                 <Profile />
+              </ProtectedRoute>
+              } 
+            />
+            <Route path = "/editprofile" element={
+              <ProtectedRoute>
+                <EditProfile />
               </ProtectedRoute>
               } 
             />

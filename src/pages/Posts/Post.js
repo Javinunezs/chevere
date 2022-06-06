@@ -6,6 +6,7 @@ import { auth, db } from '../../firebase-config';
 import LikesPosts from './LikesPosts';
 import SavePost from "./SavePost";
 import Comment from './Comment';
+import Avatar from "@mui/material/Avatar";
 
 function Post(item) {
     const {id} = useParams();
@@ -45,19 +46,36 @@ function Post(item) {
     <div>
         {
             post && (
-                <div className='grid text-black'>
-                    <div className='col-span-3'>
-                        <img src={post.imageUrl} alt={post.title} style={{}} />
-                    </div>
-                        <div className='col-9 mt-3'>
-                            <h2>{post.title}</h2>
-                            <h4>{post.description}</h4>
-                            <h5>Autor: {post.createdBy}</h5>
-                            <div> Publicado el: {post.createdAt.toDate().toDateString()}</div>
-                            <hr/>
+               
+                    <div className=" mx-10 pt-20 grid grid-cols-10  bg-gray-100">
+                         
+                          
+                    
+                         
+                            <div className='text-slate-900 text-xl font-light col-start-1 col-end-6 ml-20'> 
+                                {post.createdAt.toDate().toDateString()}
+                            </div>
+
+                            <h1 className='font-bold leading-tight text-6xl mt-2 mb-10 text-black col-start-1 col-end-6 ml-20'>
+                                {post.title}
+                            </h1>
+
+                            <Avatar src={user.photoURL} className="col-start-1 ml-20" />
+
+                            <h5 className=" ml-5 col-start-2 col-end-3">
+                                Anfitrion 
+                            </h5>
+
+                            <h5 className='col-start-2  leading-tight text-l font-bold mt-0 mb-10 ml-5 text-black'> 
+                                {post.createdBy}
+                            </h5>
                             
 
-                            <div className='flex flex-row-reverse'>
+                            <div className=' col-start-1 col-end-8 ml-20'>
+                                <img className="w-full h-full object-cover" src={post.imageUrl} alt={post.title} style={{height:450, width:700}} />
+                            </div>
+
+                            <div className='col-start-9 col-end-11 flex flex-row-reverse'>
                                 {user && <LikesPosts id={id} likes={post.likes}/>}
                                 <div className='p-2'>
                                     <p>{post.likes.length}</p>
@@ -67,11 +85,34 @@ function Post(item) {
                                             <p>{post.savePost?.length} Evento Guardado</p>
                                         </div>
                             </div>
+
+                            <h2 className='my-10 leading-tight text-3xl font-bold  text-black col-start-1 col-end-6 ml-20'>
+                                Descripción
+                            </h2>
+
+                            <h4 className=' col-start-1 col-end-6 ml-20'>
+                                {post.description}
+                            </h4>
+
+                            <h2  className='my-10 leading-tight text-3xl font-bold text-black col-start-1 col-end-6 ml-20'>
+                                Detalles Técnicos
+                            </h2>
+
+                            <h4 className=' col-start-1 col-end-6 ml-20'>
+                                {post.description}
+                            </h4>
+
+                            
+
+                            
+
+
                             {/*comment*/}
-                            <Comment id={post.id} />
+                            <Comment  id={post.id} />
+                        
                         </div>
 
-                </div>
+                
                 
             )
         }
