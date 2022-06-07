@@ -16,7 +16,7 @@ import MapView from "./pages/Maps/MapView";
 import "leaflet/dist/leaflet.css";
 import 'font-awesome/css/font-awesome.css';
 import "./App.css";
-import Share  from "./pages/Posts/Share";
+
 
 
 
@@ -38,7 +38,7 @@ function App() {
             <Route path = "/resetpassword" element={<ResetPassword/>} />                    
             <Route path = "/" element={<Posts />} />
             <Route path = "/mapview" element={<MapView />} />
-            <Route path = "/share" element={<Share />} />
+
 
             <Route path="/post/:id" element={
               <ProtectedRoute>

@@ -1,4 +1,7 @@
-import React, {useState} from "react";
+import React, {useState,  Component } from 'react';
+import Select from 'react-select';
+
+
 import { addDoc, collection, Timestamp } from "firebase/firestore";
 import {getDownloadURL, ref, uploadBytesResumable} from "firebase/storage";
 import { storage, db, auth } from "../../firebase-config";
@@ -11,6 +14,13 @@ import TableDatePicker from "../CalendarDatePicker/TableDatePicker";
 
 
 
+const options = [
+    { value: 'trekking', label: 'Trekking' },
+    { value: 'senderismo', label: 'Senderismo' },
+    { value: 'escalada', label: 'Escalada' }
+  ];
+
+
 export function AddPost() {
 
     // Declaracion de constantes usadas  mas adelante
@@ -20,6 +30,21 @@ export function AddPost() {
     const [user] = useAuthState(auth);
     const [date, setDate]=useState(new Date()); // variable que quiero usar para guardar las fechas que el usuario elija para realizar el evento
     const [progress,setProgress] = useState(0);
+    const [selectedSport, setSelectedSport] = useState();
+
+
+
+
+
+    const handleSelectChange= ({label})=>{
+
+      console.log(label);
+      setSelectedSport(label);
+
+    }
+
+
+
 
 
 
@@ -93,7 +118,10 @@ export function AddPost() {
                     createdBy: user.displayName || user.email,
                     userId:user.uid,
                     likes:[],
-                    comments:[]
+                    comments:[],
+                    sport: selectedSport,
+                    
+                  
                 })
                 .then(() => {
                     toast("Evento añadido", {type: "success"}); // Terminar de hacer esto con todas las alertas que he dispuesto en el resto de documentos
@@ -139,7 +167,7 @@ export function AddPost() {
         
             <div className='fixed w-full px-4 py-24 z-50'>
             
-                <div className='max-w-[450px] h-[600px] mx-auto  bg-black/75 text-white'>
+                <div className='max-w-[450px] h-[800px] mx-auto  bg-black/75 text-white'>
         
                 <i className=" fa fa-times mx-6 my-6 right-full " onClick={handleClose} style={{cursor:"pointer"}} ></i>
         
@@ -169,6 +197,13 @@ export function AddPost() {
                             )}
 
                             <TableDatePicker/>
+                            <Select 
+                                defaultValue={{label: 'Seleccione un deporte', value: 'empty'}}
+                                className="text-black"  
+                                onChange={handleSelectChange}  
+                                options={options} 
+                            />
+                            
                             
                         
                             <button  onClick={handlePublish} className="  py-3 my-6 rounded font-bold mt-4 bg-slate-50 hover:bg-green-600 text-black shadow rounded border-green  py-2 px-4 w-full">Publicar</button>

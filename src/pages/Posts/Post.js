@@ -7,7 +7,7 @@ import LikesPosts from './LikesPosts';
 import SavePost from "./SavePost";
 import Comment from './Comment';
 import Avatar from "@mui/material/Avatar";
-import Share from './Share';
+
 import { FacebookShareButton, TwitterShareButton, WhatsappShareButton } from "react-share";
 import { FacebookIcon, TwitterIcon, WhatsappIcon } from "react-share";
 import { useModal } from 'react-hooks-use-modal';
@@ -73,9 +73,9 @@ function Post() {
                
                     <div >
                          
-                          <div className="   grid grid-cols-10  bg-gray-200">
+                          <div className="  grid grid-cols-10  bg-gray-200">
                         
-                         <div className=' bg-white col-start-1 col-end-11 sticky top-0'>
+                         <div className=' absolute     bg-white col-start-1 col-end-11 sticky top-0'>
                             <div className='text-slate-900 text-xl font-light col-start-1 col-end-6 ml-20'> 
                                 {post.createdAt.toDate().toDateString()}
                             </div>
@@ -84,7 +84,7 @@ function Post() {
                                 {post.title}
                             </h1>
                         </div>
-                            <Avatar src={user.photoURL} className="col-start-1 bottom ml-20" />
+                            <Avatar src={user.photoURL} className=" relative col-start-1 col-end-2 ml-20" />
 
                             <h5 className=" ml-5 col-start-2 col-end-3">
                                 Anfitrion 
@@ -99,16 +99,30 @@ function Post() {
                                 <img className="w-full h-full object-cover" src={post.imageUrl} alt={post.title} style={{height:450}} />
                             </div>
 
-                            <div className='col-start-9 col-end-11 flex flex-row-reverse'>
+                            <div className=' rounded-lg border-t border-b border-r border-l border-slate-200 absolute top-2/4 mt-20 transform  -translate-y-1/2  sticky col-start-8 col-end-11  mr-20 bg-white '>
+                            <div className='text-xl font-bold'>Evento de {post.sport} </div>
+                            Evento Publico
+                            <br/>
+                            Fecha
+                            <br/>
+                            Ubicacion
+                           
+                            </div>
+
+                            {/*-translate-x-1/2    esto sirve para fijar en pantalla */}
+
+
+                            {/*<div className='col-start-8 col-end-11 mr-20 bg-white '>
+                                <div></div>
                                 {user && <LikesPosts id={id} likes={post.likes}/>}
-                                <div className='p-2'>
+                                <div className=' p-2'>
                                     <p>{post.likes.length}</p>
                                 </div>
                                 {user && <SavePost id={id} savePost={post.savePost}/>}
                                         <div className="p-2" onClick={savPost}>
                                             <p>{post.savePost?.length} Evento Guardado</p>
                                         </div>
-                            </div>
+                            </div> */}
 
                             <h2 className='my-10 leading-tight text-3xl font-bold  text-black col-start-1 col-end-6 ml-20'>
                                 Descripción
@@ -149,12 +163,12 @@ function Post() {
                                        
                                     </div>
 
-                                    <button onClick={handleShare} className=" col-start-6 col-end-8 ml-20 py-3 my-6 rounded font-bold mt-4 bg-green-600 hover:bg-slate-500 text-black shadow rounded border-green  py-2 px-4 h-3/4 w-full">Asistir</button>
+                                    <button onClick={handleShare} className=" col-start-6 col-end-8 ml-20 py-3 my-6 rounded-lg font-bold mt-4 bg-green-600 hover:bg-slate-500 text-white text-xl shadow rounded border-green  py-2 px-4 h-3/4 w-full">Asistir</button>
                                        
-                                    <div className=' col-start-9 col-end-10 '>                                
+                                    <div className='ml-2 col-start-8 col-end-10 '>                                
 
 
-                                        <button className="  py-3 my-6 rounded font-bold mt-4 bg-white border-t border-b border-r border-l border-blue-500 hover:bg-blue-500 text-black shadow rounded border-green  py-2 px-4 h-3/4 w-full mr-5  text-xl fa fa-share fa-lg" onClick={open}>Compartir</button>
+                                        <button className="  ml-20 py-3 my-6 rounded-lg font-bold mt-4 bg-white border-t border-b border-r border-l border-blue-500 hover:bg-blue-500 text-blue-500 hover:text-white text-xl shadow rounded border-green  py-2 px-4 h-3/4 w-full  fa fa-share fa-lg" onClick={open}>Compartir</button>
                                         <Modal>
                                         <div className='bg-slate-400 text-Black w-[350px] h-[250px] mx-auto'>
                                         <h1 className='text-3xl font-bold'>Compartir Evento</h1>

@@ -63,7 +63,7 @@ export function Posts(){
                 ) : (  
                     
 
-                   posts.map(({id,title,description,imageUrl, createdAt,createdBy,userId,likes,comments,savePost}) => (
+                   posts.map(({id,title,description,imageUrl, createdAt,createdBy,userId,likes,comments,savePost, sport}) => (
 
                     <div className=" col-span-6   mx-5">
                        <div className="  border-y-zinc-50 rounded-md  px-4 py-4 z-50  mb-6 p-6 bg-gray-300 m-auto w-full text-black " key={id}>
@@ -95,9 +95,11 @@ export function Posts(){
                                             }
                                         </div>
                                     </div>
+                                    <div className='text-xl font-bold'>Evento de {sport} </div>
                                     <div>
                                         <h3 className="text-lg font-bold">{title}</h3>
                                         <h5 className="text-sm font-light">{description}</h5>
+                                        
                                     </div>
                                     
                                     <p className="text-xs font-light pt-6">{createdAt.toDate().toDateString()}</p> 
