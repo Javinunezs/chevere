@@ -27,6 +27,7 @@ export function AddPost() {
     const[formData, setFormData] = useState({
         title: "",
         description: "",
+        details: "",
         image: "",
         createdAt: Timestamp.now().toDate(),
         selectedDate: "", // variable que quiero usar para guardar las fechas que el usuario elija para realizar el evento
@@ -76,6 +77,7 @@ export function AddPost() {
             setFormData({
                 title:"",
                 description: "",
+                details: "",
                 image: "",
             });
             getDownloadURL(uploadImage.snapshot.ref)
@@ -85,6 +87,7 @@ export function AddPost() {
                 addDoc(postRef,{
                     title: formData.title,
                     description: formData.description,
+                    details: formData.details,
                     imageUrl: url,
                     createdAt: Timestamp.now().toDate(),
                     createdBy: user.displayName || user.email,
@@ -151,7 +154,7 @@ export function AddPost() {
                             {/* description */}
 
                             <textarea name="description" placeholder='Descripcion del evento...' className="form-textarea p-3 my-2 bg-gray-700 rounded" value={formData.description} onChange={(e) => handleChange(e)}/>
-
+                            <textarea name="details" placeholder='Detalles Técnicos' className="form-textarea p-3 my-2 bg-gray-700 rounded" value={formData.details} onChange={(e) => handleChange(e)}/>
                             {/* image */}
                             <label className="p-3  text-white-700 ">Foto del Evento</label>
                             <input type="file" name="image" placeholder='Foto' accept="image/*" className="form-input p-3 my-2 bg-gray-700 rounded" onChange={(e) => handleImageChange(e)}/>

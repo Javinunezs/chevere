@@ -16,6 +16,7 @@ import MapView from "./pages/Maps/MapView";
 import "leaflet/dist/leaflet.css";
 import 'font-awesome/css/font-awesome.css';
 import "./App.css";
+import Share  from "./pages/Posts/Share";
 
 
 
@@ -24,6 +25,7 @@ function App() {
   const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth")); // ver esto cambiarlo para que este en authContext
   //bg-[url('/img/fondo-log-hd.png')]
   //     <div className="bg-slate-300 text-black text-white flex-1">
+  // <Route path = "/share" element={<Share />} />
 
 
   return (
@@ -36,9 +38,11 @@ function App() {
             <Route path = "/resetpassword" element={<ResetPassword/>} />                    
             <Route path = "/" element={<Posts />} />
             <Route path = "/mapview" element={<MapView />} />
+            <Route path = "/share" element={<Share />} />
 
             <Route path="/post/:id" element={
               <ProtectedRoute>
+                 
                 <Post/>
               </ProtectedRoute>
               } 

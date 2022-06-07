@@ -67,7 +67,7 @@ function Comment({id}) {
     </div>
     {
           currentlyLoggedinUser && (
-            <input type="text" className="w-full form-control mt-4 mb-5" value={comment} onChange={(e)=>{ setComment(e.target.value);
+            <input type="text" className="w-1/2 form-control mt-4 mb-5" value={comment} onChange={(e)=>{ setComment(e.target.value);
             }}
             placeholder="Añade comentarios"
             onKeyUp={(e) => {handleChangeComment(e,)}}/>
