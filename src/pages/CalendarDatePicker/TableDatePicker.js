@@ -30,6 +30,7 @@ export default function TableDatePicker() {
 
       </div>
       <div>Selected start date={startDate ? startDate.toString() : null}</div>
+      {console.log(startDate.toString())}
 
      </div>
       

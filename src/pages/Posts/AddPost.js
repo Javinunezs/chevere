@@ -1,8 +1,8 @@
-import React, {useState,  Component } from 'react';
+import React, {useState,  Component, useCallback, useEffect } from 'react';
 import Select from 'react-select';
 
 
-import { addDoc, collection, Timestamp } from "firebase/firestore";
+import { addDoc, collection, orderBy, getDocs, query, serverTimestamp, Timestamp, setDoc, DocumentData, QuerySnapshot, DocumentSnapshot } from "firebase/firestore";
 import {getDownloadURL, ref, uploadBytesResumable} from "firebase/storage";
 import { storage, db, auth } from "../../firebase-config";
 import {toast} from "react-toastify";
@@ -10,8 +10,13 @@ import {useAuth} from "../../context/authContext";
 import { useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import {Posts} from "./Posts";
-import TableDatePicker from "../CalendarDatePicker/TableDatePicker";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
+import {  StandaloneSearchBox, Marker, LoadScript } from '@react-google-maps/api';
+
+const libraries = ["places"]; 
+const apiKey = "AIzaSyCEYVwzxkIaAPgqgyYYeHSuVepc9g5Qg30";
 
 
 const options = [
@@ -26,14 +31,38 @@ export function AddPost() {
     // Declaracion de constantes usadas  mas adelante
     let navigate = useNavigate();
     const { loading} = useAuth()  //ejemplo uso: <h1> Hola {user.email}</h1>
-    const selectDate =TableDatePicker(); // variable que quiero usar para guardar las fechas que el usuario elija para realizar el evento
+   // variable que quiero usar para guardar las fechas que el usuario elija para realizar el evento
     const [user] = useAuthState(auth);
     const [date, setDate]=useState(new Date()); // variable que quiero usar para guardar las fechas que el usuario elija para realizar el evento
     const [progress,setProgress] = useState(0);
     const [selectedSport, setSelectedSport] = useState();
+    const [startDate, setStartDate] = useState(null);
 
 
 
+
+    const [searchBox, setSearchBox] = useState();
+    const [map, setMap] = useState();
+    const [point, setPoint] = useState();
+    const [pointName, setPointName] = useState();
+  
+    const onPlacesChanged = () => {
+      const places = searchBox.getPlaces();
+      const place = places[0];
+      const locationName ={
+        cityname: place.formatted_address
+      }
+      const location ={
+        lat: place.geometry.location.lat(),
+        lng: place.geometry.location.lng()
+      }
+      setPoint(location);
+      setPointName(locationName);
+      console.log(locationName);
+      console.log(place);
+      console.log(location);
+      map.panTo(location);
+    }
 
 
     const handleSelectChange= ({label})=>{
@@ -104,6 +133,7 @@ export function AddPost() {
                 description: "",
                 details: "",
                 image: "",
+                
             });
             getDownloadURL(uploadImage.snapshot.ref)
             .then((url) => {
@@ -119,7 +149,12 @@ export function AddPost() {
                     userId:user.uid,
                     likes:[],
                     comments:[],
+                    assists: [],
                     sport: selectedSport,
+                    date: date,
+                    location: point,
+                    locationName: pointName,
+                   
                     
                   
                 })
@@ -164,7 +199,7 @@ export function AddPost() {
         <div className='w-full h-screen'>
             
             <div className='bg-black/60 fixed top-0 left-0 w-full h-screen'></div>
-        
+        <div></div>
             <div className='fixed w-full px-4 py-24 z-50'>
             
                 <div className='max-w-[450px] h-[800px] mx-auto  bg-black/75 text-white'>
@@ -196,7 +231,38 @@ export function AddPost() {
 
                             )}
 
-                            <TableDatePicker/>
+                            <div>
+                                <div className="text-black" style={{display: "flex"}}>
+                                    <DatePicker 
+                                    
+                                    
+                                    selected={date}
+                                   
+                                    onChange={(date) => setDate(date)}
+                                    />
+                                    
+
+
+
+
+                                </div>
+                                
+                               
+
+                            </div>
+                            
+                                
+                                    <div className='pt-5 text-black'>
+                                    <StandaloneSearchBox
+                                        onLoad={(ref) => setSearchBox(ref)}
+                                        onPlacesChanged={onPlacesChanged}>
+                                        <input className='addressField' placeholder="Inserte Ubicación"/>
+                                    </StandaloneSearchBox>
+                                    {point && <Marker position={point}/>}
+                                    </div>
+
+                            
+                          
                             <Select 
                                 defaultValue={{label: 'Seleccione un deporte', value: 'empty'}}
                                 className="text-black"  

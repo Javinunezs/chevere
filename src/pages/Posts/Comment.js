@@ -61,7 +61,7 @@ function Comment({id}) {
 
   // Cambiar el estilo visual de esta pagina por completo
   return (
-    <div className=' col-start-1 col-end-6 ml-20'>
+    <div className=' md:col-start-2 md:col-end-7 sm:col-start-1 sm:col-end-11 ml-10 pl-5 mr-10 pr-5'>
     <div className="my-10 leading-tight text-3xl font-bold  text-black ">
       Comentarios
     </div>

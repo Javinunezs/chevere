@@ -1,5 +1,7 @@
 
-#map { height: 550px; }
+.map {
+  height: 100vh;
+}
 
 /*.App {
   text-align: center;

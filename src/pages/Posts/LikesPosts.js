@@ -22,9 +22,10 @@ export default function LikesPosts({ id, likes }) {
     }
     else{
         updateDoc(likesRef,{
-            likes:arrayUnion(user.uid)
+            likes:arrayUnion(user.uid),
         }).then(() => {
             console.log("liked");
+            console.log(user.uid,user.displayName || user.email);
         }).catch((e) => {
               console.log(e);
         });
@@ -34,9 +35,9 @@ export default function LikesPosts({ id, likes }) {
 
   // Recuento de likes y simbolo
   return (
-    <div>
+    <div className="xs:col-start-10 xs:col-end-11 md:col-start-9 md:col-end-9">
       <i
-        className={`fa fa-heart${!likes?.includes(user.uid) ? "-o" : ""} fa-lg`}
+        className={`fa fa-heart${!likes?.includes(user.uid) ? "-o" : ""} md:fa-lg xs:fa-xs `}
         style={{
           cursor: "pointer",
           color: likes?.includes(user.uid) ? "red" : null,

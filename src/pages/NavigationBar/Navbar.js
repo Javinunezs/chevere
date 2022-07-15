@@ -2,6 +2,7 @@ import React,{useState} from 'react';
 import { Link } from "react-router-dom";
 import { useAuth } from "../../context/authContext"; 
 import MenuItems from './MenuItems';
+import Avatar from "@mui/material/Avatar";
 
 
 function Navbar() {
@@ -29,7 +30,7 @@ function Navbar() {
 // La barra de navegación cambia ahora mismo entre usuarios registrados y los que no están. Limitando asi ciertas acciones dependiendo de si estas o no registrado.
   return (
     
-		<nav className="bg-white shadow-lg items-center justify-between z-[400] w-full absolute">
+		<nav className="bg-white shadow-md items-center justify-between z-[400] w-full absolute">
 		{
 			!user?
 			<>
@@ -47,7 +48,7 @@ function Navbar() {
 
 
 								<div className='absolute right-6 md:hidden top-6 scale-150'>
-								<i class="fa fa-bars scale-150" styles={{cursor: "pointer"}} aria-hidden="true" onClick={showMenu}></i>
+								<i className="fa fa-bars scale-150" styles={{cursor: "pointer"}} aria-hidden="true" onClick={showMenu}></i>
  
 								</div>
 								
@@ -87,7 +88,7 @@ function Navbar() {
 								</div>
 
 								<div className='absolute right-6 md:hidden top-6 scale-150'>
-								<i class="fa fa-bars scale-150" styles={{cursor: "pointer"}} aria-hidden="true" onClick={showMenu}></i>
+								<i className="fa fa-bars scale-150" styles={{cursor: "pointer"}} aria-hidden="true" onClick={showMenu}></i>
  
 								</div>
 								
@@ -96,6 +97,7 @@ function Navbar() {
 									
 									<Link to="profile" className="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Profile</Link>
 									<Link to={"mapview"} className="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Map</Link>
+									<Avatar src={user.photoURL} />
 									<div className="hidden md:flex items-center space-x-3 ">		
 										<button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" onClick={ handleLogout }> Log Out </button>
 									</div>

@@ -1,4 +1,4 @@
-import React from 'react'
+/*import React from 'react'
 import {Marker} from "react-leaflet"
 import "leaflet/dist/leaflet"
 
@@ -12,4 +12,4 @@ function MarkersPoint() {
   )
 }
 
-export default MarkersPoint
+export default MarkersPoint*/

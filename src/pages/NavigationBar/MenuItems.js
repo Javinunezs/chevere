@@ -25,9 +25,9 @@ const MenuItems =({showMenu,active})=> {
                 <div className={active ? 'flex-col flex items-center fixed inset-0 left-1/4 uppercase bg-black/40 backdrop-blur-lg gap-8 justify-center p-8 z-40 md:hidden' : 'hidden'}>
                         <i className="fa fa-times " style={{cursor: "pointer"}} aria-hidden="true" onClick={showMenu}/>
                         <a href="/" className="py-4 px-2 text-green-500 border-b-4 border-green-500 font-semibold "onClick={showMenu}>Home</a>
-						<Link to={"mapview"} className="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300"onClick={showMenu}>Map</Link>
-						<Link to={"login"} className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300"onClick={showMenu}>Log In</Link>
-						<Link to="register" className="py-2 px-2 font-medium text-white bg-green-500 rounded hover:bg-green-400 transition duration-300"onClick={showMenu}>Sign Up</Link>
+                        <Link to={"mapview"} className="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300"onClick={showMenu}>Map</Link>
+                        <Link to={"login"} className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-green-500 hover:text-white transition duration-300"onClick={showMenu}>Log In</Link>
+                        <Link to="register" className="py-2 px-2 font-medium text-white bg-green-500 rounded hover:bg-green-400 transition duration-300"onClick={showMenu}>Sign Up</Link>
                 </div>
 
             </>

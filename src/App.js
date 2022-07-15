@@ -13,9 +13,13 @@ import Post  from "./pages/Posts/Post";
 import Profile  from "./pages/ProfileChevere/Profile";
 import EditProfile  from "./pages/ProfileChevere/EditProfile";
 import MapView from "./pages/Maps/MapView";
+
+//import {MapPage} from "./pages/Maps/MapPage.tsx";
 import "leaflet/dist/leaflet.css";
 import 'font-awesome/css/font-awesome.css';
 import "./App.css";
+import Home from "./pages/Home/Home";
+
 
 
 
@@ -23,23 +27,27 @@ import "./App.css";
 function App() {
 
   const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth")); // ver esto cambiarlo para que este en authContext
+  
   //bg-[url('/img/fondo-log-hd.png')]
   //     <div className="bg-slate-300 text-black text-white flex-1">
   // <Route path = "/share" element={<Share />} />
 
 
   return (
+
     <AuthProvider>
 
     <Navbar/>
           <Routes>
+          
             <Route path = "/login" element={<Login />} />
             <Route path = "/register" element={<Register/>} />
             <Route path = "/resetpassword" element={<ResetPassword/>} />                    
             <Route path = "/" element={<Posts />} />
             <Route path = "/mapview" element={<MapView />} />
+            <Route path = "/home" element={<Home />} />
 
-
+          
             <Route path="/post/:id" element={
               <ProtectedRoute>
                  
@@ -47,6 +55,7 @@ function App() {
               </ProtectedRoute>
               } 
             />
+          
             <Route path = "/addpost" element={
               <ProtectedRoute>
                 <AddPost />
@@ -65,12 +74,15 @@ function App() {
               </ProtectedRoute>
               } 
             />
+
           </Routes>
         
         
-   
+         
+
 
     </AuthProvider>
+    
   );
 
 }

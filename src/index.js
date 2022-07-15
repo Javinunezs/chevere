@@ -4,6 +4,10 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
+import {  StandaloneSearchBox, Marker, LoadScript } from '@react-google-maps/api';
+
+const libraries = ["places"]; 
+const apiKey = "AIzaSyCEYVwzxkIaAPgqgyYYeHSuVepc9g5Qg30";
 
 
 /*ReactDOM.render(
@@ -13,7 +17,11 @@ import { BrowserRouter } from 'react-router-dom';
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
+
+  
 );*/
+
+
 
 
 // Version 1// volver a esto quizas // de esta manera funciona
@@ -21,7 +29,11 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+    <LoadScript
+                                googleMapsApiKey= {apiKey}
+                                libraries={libraries}>
+        <App />
+        </LoadScript>
     </BrowserRouter>
   </React.StrictMode>
 );
