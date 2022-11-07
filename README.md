@@ -1,3 +1,7 @@
+## To see the code of this project contact with me. Now is in private mode while it´s being developed.
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
